@@ -3,10 +3,11 @@ main:
     url: /
 
   - title: "Topics"
-    url: /opportunitylab.nl/topics/
+    url: /topics/
 
   - title: "Projects"
-    url: /opportunitylab.nl/projects/
+    url: /projects/
 
   - title: "Outputs"
-    url: /opportunitylab.nl/outputs/
+    url: /outputs/
+
