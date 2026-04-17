@@ -1,0 +1,12 @@
+main:
+  - title: "Home"
+    url: /
+
+  - title: "Topics"
+    url: /topics/
+
+  - title: "Projects"
+    url: /projects/
+
+  - title: "Outputs"
+    url: /outputs/
