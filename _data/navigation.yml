@@ -1,12 +1,12 @@
 main:
   - title: "Home"
-    url: "{{ site.baseurl }}/"
+    url: /
 
   - title: "Topics"
-    url: "{{ site.baseurl }}/topics/"
+    url: /topics/
 
   - title: "Projects"
-    url: "{{ site.baseurl }}/projects/"
+    url: /projects/
 
   - title: "Outputs"
-    url: "{{ site.baseurl }}/outputs/"
+    url: /outputs/
