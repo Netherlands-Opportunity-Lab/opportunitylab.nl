@@ -5,5 +5,5 @@ layout: single
 ---
 
 Projects:
-- C4PO
+- [C-4PO]({{site.baseurl}}/c-4po)
 

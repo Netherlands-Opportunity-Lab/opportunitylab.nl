@@ -5,4 +5,4 @@ layout: single
 ---
 
 Topics:
-- Scientific research using preventative youth health care data
+- [Scientific research using preventative youth health care data]({{ site.baseurl }}/pyhc-data/)
