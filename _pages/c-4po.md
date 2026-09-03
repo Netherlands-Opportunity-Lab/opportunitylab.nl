@@ -13,12 +13,6 @@ C-4PO is a partnership between 25 universities, knowledge institutions, and heal
 
 ---
 
-## Related Topics
-
-- [Scientific research using preventative youth health care data]({{ site.baseurl }}/pyhc-data/)
-
----
-
 ## Related Outputs
 
 - [Legal Note on the Use of Preventive Youth Health Care Data for Research via Statistics Netherlands]({{ site.baseurl }}/legal-note-on-the-use-of-preventive-youthhealth-care-data-for-research-via-statistics-netherlands/)
