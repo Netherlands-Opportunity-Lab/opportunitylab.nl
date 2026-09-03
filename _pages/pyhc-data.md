@@ -9,11 +9,6 @@ classes: wide
 Short description.
 </div>
 
-## Related Projects
-
-- [C-4PO]({{ site.baseurl }}/c-4po/)
-
----
 
 ## Related Outputs
 
