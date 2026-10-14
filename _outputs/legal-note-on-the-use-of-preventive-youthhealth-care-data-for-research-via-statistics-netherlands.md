@@ -1,6 +1,6 @@
 ---
 title: "Legal Note on the Use of Preventive Youth Health Care Data for Research via Statistics Netherlands"
-excerpt: "The legal foundations, safeguards and procedural considerations for using preventive youth health care data in scientific research through Statistics Netherlands (CBS)."
+excerpt: "The legal basis and safeguards for using preventive youth health care data in research through Statistics Netherlands (CBS)."
 output_type: Legal note
 topics: [pyhc-data]
 projects: [c-4po]

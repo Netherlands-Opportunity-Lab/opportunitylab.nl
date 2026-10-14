@@ -1,0 +1,505 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+search: false
+---
+
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+
+/* ==========================================================================
+   Theme variables (override Minimal Mistakes defaults)
+   ========================================================================== */
+
+$ink: #231f20;
+$grey: #747577;
+$grey-light: #b2b5b7;
+$paper-alt: #f1f3f4;
+$teal: #29b6a4;        // accent: borders, bars, highlights
+$teal-light: #3dcbb9;
+$teal-dark: #1a7f72;   // text links (meets WCAG AA on white)
+
+$serif: "Lora", Georgia, "Times New Roman", serif;
+$sans-serif: "Source Sans 3", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+$monospace: "Source Code Pro", Consolas, Monaco, monospace;
+
+$global-font-family: $sans-serif;
+$header-font-family: $serif;
+
+$text-color: $ink;
+$primary-color: $teal;
+$border-color: #e3e5e6;
+$link-color: $teal-dark;
+$link-color-hover: $ink;
+$link-color-visited: $teal-dark;
+$masthead-link-color: $ink;
+$masthead-link-color-hover: $teal-dark;
+$footer-background-color: #000;
+$border-radius: 0;
+
+@import "minimal-mistakes"; // main partials
+
+/* ==========================================================================
+   Shared helpers
+   ========================================================================== */
+
+%label {
+  font-family: $sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+%mono-label {
+  font-family: $monospace;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   Masthead
+   ========================================================================== */
+
+.masthead {
+  border-bottom: 1px solid $border-color;
+}
+
+.masthead__inner-wrap {
+  padding-top: 1.1em;
+  padding-bottom: 1.1em;
+}
+
+// Logo lockup, scaled from the design reference (96px mark : 46px name : 15px "NETHERLANDS")
+.greedy-nav .wordmark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-right: 2em;
+  font-family: "IBM Plex Sans", $sans-serif;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.wordmark__mark {
+  flex: none;
+  width: 42px;
+  height: 42px;
+}
+
+.wordmark__text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wordmark__line1 {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #4a6164;
+}
+
+.wordmark__line2 {
+  font-size: 21px;
+  letter-spacing: -0.01em;
+  color: #002328;
+}
+
+.masthead__menu-item {
+  @extend %label;
+  font-size: 0.72em;
+}
+
+.greedy-nav {
+  .visible-links {
+    li {
+      display: flex;
+      align-items: center;
+    }
+
+    // Thin teal dividers between menu items
+    li + li::before {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 1.9em;
+      background: $teal;
+    }
+
+    a {
+      margin: 0 1.2em;
+      color: $ink;
+
+      &::before {
+        height: 2px;
+        bottom: -0.35em;
+        background: $teal;
+      }
+
+      &:hover {
+        color: $teal-dark;
+      }
+    }
+
+    li:last-child a {
+      margin-right: 0.6em;
+    }
+  }
+
+  .hidden-links a {
+    @extend %label;
+    font-size: 0.75em;
+  }
+}
+
+/* ==========================================================================
+   Headings & body copy
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  color: $ink;
+}
+
+.page__title {
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.page__lead {
+  font-family: $serif;
+}
+
+.page__content {
+  h2 {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-top: 2em;
+
+    // Short teal rule above section headings
+    &::before {
+      content: "";
+      display: block;
+      width: 2.5em;
+      height: 3px;
+      margin-bottom: 0.6em;
+      background: $teal;
+    }
+  }
+
+  a {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+  }
+
+  // Metadata tables (output details)
+  table {
+    border: none;
+    font-size: 0.85em;
+  }
+
+  th, td {
+    border-bottom: 1px solid $border-color;
+    padding: 0.8em 0.5em;
+    vertical-align: top;
+  }
+
+  tbody th {
+    @extend %mono-label;
+    width: 11em;
+    font-size: 0.72em;
+    color: $grey;
+    background: transparent;
+    padding-top: 1.15em;
+  }
+
+  // Citation block
+  blockquote {
+    margin-left: 0;
+    padding: 1em 1.25em;
+    border-left: 3px solid $teal;
+    background: $paper-alt;
+    font-family: $serif;
+    font-style: normal;
+    font-size: 0.9em;
+  }
+}
+
+.breadcrumbs {
+  @extend %label;
+  font-size: 0.68em;
+  color: $grey;
+
+  a {
+    color: $grey;
+    text-decoration: none;
+
+    &:hover {
+      color: $teal-dark;
+    }
+  }
+}
+
+.page__content .page__meta,
+.page__meta {
+  @extend %mono-label;
+  font-size: 0.6em;
+}
+
+/* ==========================================================================
+   Lists of topics / projects / outputs
+   ========================================================================== */
+
+.entries-list {
+  .list__item {
+    border-top: 1px solid $border-color;
+
+    &:last-child {
+      border-bottom: 1px solid $border-color;
+    }
+  }
+
+  .archive__item {
+    padding: 1.1em 0 0.4em;
+  }
+
+  .archive__item-title {
+    margin-top: 0;
+    font-family: $serif;
+    font-size: 1.2em;
+    font-weight: 500;
+
+    &::before {
+      display: none; // undo the section-heading rule
+    }
+
+    a {
+      color: $ink;
+      text-decoration: none;
+
+      &:hover {
+        color: $teal-dark;
+      }
+    }
+  }
+
+  .archive__item-excerpt {
+    margin-top: 0.3em;
+    font-size: 0.8em;
+    color: $grey;
+  }
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn {
+  @extend %label;
+  border-radius: 0;
+  padding: 0.75em 1.5em;
+  font-size: 0.7em;
+}
+
+.btn--primary {
+  background: transparent;
+  color: $ink;
+  border: 2px solid $ink;
+
+  &:hover {
+    background: $ink;
+    color: #fff;
+  }
+}
+
+/* ==========================================================================
+   Home page (splash)
+   ========================================================================== */
+
+// Hero: light grey band (set in index.md) matching the map, which sits on the right
+.page__hero--overlay {
+  position: relative;
+  padding: 6em 0;
+  overflow: hidden;
+
+  // The whole map at its natural proportions, edges faded into the background
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: -10%;
+    aspect-ratio: 839 / 789; // kansenkaart-map.png
+    background: url("{{ '/assets/images/kansenkaart-map.png' | relative_url }}") center / contain no-repeat;
+    opacity: 0.35;
+    -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 60%, transparent 100%);
+    mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 60%, transparent 100%);
+
+    @include breakpoint($medium) {
+      right: 3%;
+      opacity: 1;
+    }
+  }
+
+  > .wrapper {
+    position: relative;
+    z-index: 1;
+  }
+
+  .page__hero-caption {
+    z-index: 1;
+  }
+
+  .page__title {
+    font-family: $serif;
+    font-weight: 400;
+    font-size: $type-size-2;
+    text-shadow: none;
+    color: $ink;
+
+    @include breakpoint($large) {
+      font-size: 2.6em;
+    }
+  }
+
+  .page__lead {
+    max-width: 26em;
+    font-family: $sans-serif;
+    font-weight: 400;
+    font-size: $type-size-4;
+    text-shadow: none;
+    color: #4a4647;
+  }
+}
+
+.layout--splash {
+  .page__content > p {
+    max-width: 46em;
+    font-size: 1.05em;
+    line-height: 1.7;
+  }
+
+  .page__content > p:first-of-type {
+    margin-top: 0.5em;
+    font-family: $serif;
+    font-size: 1.3em;
+    line-height: 1.5;
+  }
+}
+
+// Feature row: dark tiles with a teal top rule and outlined buttons
+.feature__wrapper {
+  margin-top: 2.5em;
+  border-bottom: none;
+
+  @include breakpoint($small) {
+    display: flex;
+  }
+}
+
+.feature__item {
+  @include breakpoint($small) {
+    display: flex;
+  }
+
+  .archive__item {
+    flex: 1;
+    display: flex;
+    background: $ink;
+    border-top: 4px solid $teal;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: #000;
+    }
+  }
+
+  .archive__item-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1.6em 1.5em 1.4em;
+  }
+
+  .archive__item-title {
+    margin-top: 0;
+    margin-bottom: 0.4em;
+    font-family: $serif;
+    font-size: 1.5em;
+    color: #fff;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .archive__item-excerpt {
+    flex: 1;
+    color: $grey-light;
+    font-size: 0.85em;
+  }
+
+  .btn--primary {
+    color: #fff;
+    border-color: #fff;
+
+    &:hover {
+      background: #fff;
+      color: $ink;
+    }
+  }
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.page__footer {
+  margin-top: 4em;
+  color: $grey-light;
+
+  footer {
+    padding-top: 2.5em;
+    padding-bottom: 2.5em;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+
+    &:hover {
+      color: $teal-light;
+    }
+  }
+}
+
+.page__footer-follow .social-icons {
+  @extend %label;
+  font-size: 0.85em;
+
+  .fab, .fas {
+    color: $teal !important;
+  }
+}
+
+.page__footer-copyright {
+  @extend %mono-label;
+  font-size: 0.68em;
+  color: $grey-light;
+}
+
+// Map credit in the hero (theme's header caption)
+.page__hero-caption {
+  @extend %mono-label;
+  font-size: 0.55em;
+  background: rgba($ink, 0.75);
+
+  a {
+    color: #fff;
+  }
+}

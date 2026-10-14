@@ -1,0 +1,10 @@
+{% comment %}
+  Overrides the theme's page__date.html. Jekyll gives collection pages an
+  automatic date (the build time), which the theme would show as "Updated:".
+  Only show a date that was set explicitly with last_modified_at.
+{% endcomment %}
+{% assign locale = include.locale | default: site.locale %}
+{% assign date_format = page.date_format | default: site.date_format | default: "%B %-d, %Y" %}
+{% if page.last_modified_at %}
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> {{ site.data.ui-text[locale].date_label | default: "Updated:" }}</strong> <time class="dt-updated" datetime="{{ page.last_modified_at | date: "%Y-%m-%d" }}">{{ page.last_modified_at | date: date_format }}</time></p>
+{% endif %}
