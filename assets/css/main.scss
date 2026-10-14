@@ -104,40 +104,41 @@ a {
   padding-bottom: 1.1em;
 }
 
-// Logo lockup: mark + wordmark in Inter Semibold
+// Logo lockup (logo family v07): ring + one-line wordmark in Inter Semibold
 .greedy-nav .wordmark {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-right: 2em;
+  gap: 10px;
+  margin-right: 0.5em;
   font-family: $inter;
+
+  @include breakpoint($small) {
+    margin-right: 2em;
+  }
   font-weight: 600;
   line-height: 1;
 }
 
 .wordmark__mark {
   flex: none;
-  width: 42px;
-  height: 42px;
+  width: 32px;
+  height: 32px;
+
+  @include breakpoint($small) {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .wordmark__text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.wordmark__line1 {
-  font-size: 9px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: $muted;
-}
-
-.wordmark__line2 {
-  font-size: 21px;
-  letter-spacing: -0.01em;
+  font-size: 14px; // phones: fit next to the search and menu buttons
+  letter-spacing: -0.005em;
   color: $ink;
+  white-space: nowrap;
+
+  @include breakpoint($small) {
+    font-size: 19px;
+  }
 }
 
 // Navigation items are short labels: Oswald Light; hover is the "active" state: Medium

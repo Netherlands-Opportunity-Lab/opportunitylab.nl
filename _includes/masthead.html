@@ -8,15 +8,11 @@
         {% unless logo_path == empty %}
           <a class="site-logo" href="{{ '/' | relative_url }}"><img src="{{ logo_path | relative_url }}" alt="{{ site.masthead_title | default: site.title }}"></a>
         {% endunless %}
-        {% comment %} Overrides the theme: logo mark (binned scatter, assets/images/logo-mark.svg) with a two-line wordmark ("Netherlands" / "Opportunity Lab"). {% endcomment %}
+        {% comment %} Overrides the theme: Kansenlab logo (logo family v07) — six-colour ring (assets/images/logo-mark.svg) with a one-line wordmark in Inter Semibold. {% endcomment %}
         {% assign site_name = site.masthead_title | default: site.title | escape_once | strip %}
-        {% assign title_words = site_name | split: " " %}
         <a class="site-title wordmark" href="{{ '/' | relative_url }}" aria-label="{{ site_name }}">
           <img class="wordmark__mark" src="{{ '/assets/images/logo-mark.svg' | relative_url }}" alt="" width="40" height="40">
-          <span class="wordmark__text">
-            <span class="wordmark__line1">{{ title_words | first }}</span>
-            <span class="wordmark__line2">{{ site_name | remove_first: title_words.first | strip }}</span>
-          </span>
+          <span class="wordmark__text">{{ site_name }}</span>
         </a>
         <ul class="visible-links">
           {%- for link in site.data.navigation.main -%}
