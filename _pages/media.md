@@ -1,7 +1,9 @@
 ---
 title: "Media"
 permalink: /media/
-layout: single
 ---
 
-Mentions in the media:
+Mentions of the Netherlands Opportunity Lab in the media.
+
+<!-- Add items as: - [Headline](https://link) — *Outlet*, Month Year -->
+*No media mentions yet.*

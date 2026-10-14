@@ -1,0 +1,18 @@
+---
+layout: single
+---
+
+{{ content }}
+
+{% if page.collection == "projects" %}
+  {% assign related = site.outputs | where_exp: "o", "o.projects contains page.slug" %}
+{% else %}
+  {% assign related = site.outputs | where_exp: "o", "o.topics contains page.slug" %}
+{% endif %}
+
+{% if related.size > 0 %}
+<h2 id="related-outputs">Related outputs</h2>
+<div class="entries-list">
+  {% for post in related %}{% include archive-single.html %}{% endfor %}
+</div>
+{% endif %}
