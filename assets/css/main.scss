@@ -8,57 +8,86 @@ search: false
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 
 /* ==========================================================================
-   Theme variables (override Minimal Mistakes defaults)
+   Kansenlab house style v05 (2026-10-12)
+   - Logo wordmarks: Inter Semibold 600
+   - Everything else: Oswald, variant B
+       Light 300   short labels and helper text
+       Regular 400 running text, table cells
+       Medium 500  headings, chart titles, active filters/tabs, table headers
+       Semibold 600 sparingly, for extra emphasis only
+   - Standard text #17242D on background #F7F5F0
+   - The Kansenlab umbrella ring has six fixed colours ($ring-*). Brand
+     colours are not automatically data-visualisation colours.
    ========================================================================== */
 
-$ink: #231f20;
-$grey: #747577;
-$grey-light: #b2b5b7;
-$paper-alt: #f1f3f4;
-$teal: #29b6a4;        // accent: borders, bars, highlights
-$teal-light: #3dcbb9;
-$teal-dark: #1a7f72;   // text links (meets WCAG AA on white)
+$ink: #17242d;          // standard text
+$paper: #f7f5f0;        // background
+$paper-alt: #efece4;    // panels, slightly darker than the background
+$muted: #55636b;        // secondary text (5.7:1 on $paper)
+$muted-on-ink: #a9b4ba; // secondary text on $ink (7.5:1)
+$line: #e2ddd2;         // borders and dividers
 
-$serif: "Lora", Georgia, "Times New Roman", serif;
-$sans-serif: "Source Sans 3", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-$monospace: "Source Code Pro", Consolas, Monaco, monospace;
+// Kansenlab umbrella ring, in fixed order
+$ring-1: #d9833c;
+$ring-2: #ebc45a;
+$ring-3: #82a85b;
+$ring-4: #5ea6a7;
+$ring-5: #4c77a8;
+$ring-6: #6b5a8e;
+$ring-stripe: linear-gradient(90deg,
+  $ring-1 0 16.667%, $ring-2 0 33.333%, $ring-3 0 50%,
+  $ring-4 0 66.667%, $ring-5 0 83.333%, $ring-6 0);
 
-$global-font-family: $sans-serif;
-$header-font-family: $serif;
+$oswald: "Oswald", "Arial Narrow", Arial, sans-serif;
+$inter: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
 
+$sans-serif: $oswald;
+$global-font-family: $oswald;
+$header-font-family: $oswald;
+
+$background-color: $paper;
 $text-color: $ink;
-$primary-color: $teal;
-$border-color: #e3e5e6;
-$link-color: $teal-dark;
-$link-color-hover: $ink;
-$link-color-visited: $teal-dark;
+$primary-color: $ring-5;
+$border-color: $line;
+$link-color: $ink;            // links are ink with a ring-blue underline;
+$link-color-hover: $ring-5;   // #4C77A8 alone is 4.3:1 on $paper, just under AA
+$link-color-visited: $ink;
 $masthead-link-color: $ink;
-$masthead-link-color-hover: $teal-dark;
-$footer-background-color: #000;
+$masthead-link-color-hover: $ink;
+$footer-background-color: $ink;
 $border-radius: 0;
 
 @import "minimal-mistakes"; // main partials
 
 /* ==========================================================================
-   Shared helpers
+   Type roles
    ========================================================================== */
 
-%label {
-  font-family: $sans-serif;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
-
-%mono-label {
-  font-family: $monospace;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-}
+%label   { font-family: $oswald; font-weight: 300; letter-spacing: 0.02em; }
+%heading { font-family: $oswald; font-weight: 500; }
 
 body {
   -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @extend %heading;
+  color: $ink;
+}
+
+strong, b {
+  font-weight: 600; // Semibold: extra emphasis only
+}
+
+a {
+  text-decoration-color: $ring-5;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+
+  &:hover {
+    text-decoration-thickness: 2px;
+  }
 }
 
 /* ==========================================================================
@@ -66,7 +95,8 @@ body {
    ========================================================================== */
 
 .masthead {
-  border-bottom: 1px solid $border-color;
+  background: $paper;
+  border-bottom: 1px solid $line;
 }
 
 .masthead__inner-wrap {
@@ -74,13 +104,13 @@ body {
   padding-bottom: 1.1em;
 }
 
-// Logo lockup, scaled from the design reference (96px mark : 46px name : 15px "NETHERLANDS")
+// Logo lockup: mark + wordmark in Inter Semibold
 .greedy-nav .wordmark {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-right: 2em;
-  font-family: "IBM Plex Sans", $sans-serif;
+  font-family: $inter;
   font-weight: 600;
   line-height: 1;
 }
@@ -101,48 +131,50 @@ body {
   font-size: 9px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #4a6164;
+  color: $muted;
 }
 
 .wordmark__line2 {
   font-size: 21px;
   letter-spacing: -0.01em;
-  color: #002328;
+  color: $ink;
 }
 
+// Navigation items are short labels: Oswald Light; hover is the "active" state: Medium
 .masthead__menu-item {
   @extend %label;
-  font-size: 0.72em;
+  font-size: 0.85em;
 }
 
 .greedy-nav {
+  background: $paper;
+
   .visible-links {
     li {
       display: flex;
       align-items: center;
     }
 
-    // Thin teal dividers between menu items
     li + li::before {
       content: "";
       display: block;
       width: 1px;
-      height: 1.9em;
-      background: $teal;
+      height: 1.4em;
+      background: $line;
     }
 
     a {
-      margin: 0 1.2em;
+      margin: 0 1.1em;
       color: $ink;
 
       &::before {
-        height: 2px;
+        height: 3px;
         bottom: -0.35em;
-        background: $teal;
+        background: $ring-stripe;
       }
 
       &:hover {
-        color: $teal-dark;
+        font-weight: 500;
       }
     }
 
@@ -151,104 +183,101 @@ body {
     }
   }
 
-  .hidden-links a {
-    @extend %label;
-    font-size: 0.75em;
+  .hidden-links {
+    background: $paper;
+
+    a {
+      @extend %label;
+      font-size: 0.9em;
+    }
   }
 }
 
 /* ==========================================================================
-   Headings & body copy
+   Page content
    ========================================================================== */
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 400;
-  color: $ink;
-}
-
 .page__title {
-  font-weight: 400;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .page__lead {
-  font-family: $serif;
+  font-weight: 400;
 }
 
 .page__content {
+  line-height: 1.6;
+
   h2 {
     border-bottom: none;
     padding-bottom: 0;
     margin-top: 2em;
 
-    // Short teal rule above section headings
+    // Short ring stripe above section headings
     &::before {
       content: "";
       display: block;
-      width: 2.5em;
-      height: 3px;
+      width: 3em;
+      height: 4px;
       margin-bottom: 0.6em;
-      background: $teal;
+      background: $ring-stripe;
     }
   }
 
-  a {
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.18em;
-  }
-
-  // Metadata tables (output details)
+  // Metadata tables (output details): headers Medium, cells Regular
   table {
     border: none;
-    font-size: 0.85em;
+    font-size: 0.9em;
+    background: transparent;
   }
 
   th, td {
-    border-bottom: 1px solid $border-color;
-    padding: 0.8em 0.5em;
+    border-bottom: 1px solid $line;
+    padding: 0.7em 0.5em;
     vertical-align: top;
+    background: transparent;
   }
 
   tbody th {
-    @extend %mono-label;
+    @extend %heading;
     width: 11em;
-    font-size: 0.72em;
-    color: $grey;
-    background: transparent;
-    padding-top: 1.15em;
+    color: $muted;
   }
 
   // Citation block
   blockquote {
     margin-left: 0;
     padding: 1em 1.25em;
-    border-left: 3px solid $teal;
+    border-left: 4px solid $ring-5;
     background: $paper-alt;
-    font-family: $serif;
     font-style: normal;
-    font-size: 0.9em;
+    font-size: 0.95em;
   }
 }
 
 .breadcrumbs {
   @extend %label;
-  font-size: 0.68em;
-  color: $grey;
+  font-size: 0.8em;
+  color: $muted;
+
+  .current {
+    font-weight: 500; // active state: Medium
+  }
 
   a {
-    color: $grey;
+    color: $muted;
     text-decoration: none;
 
     &:hover {
-      color: $teal-dark;
+      color: $ink;
+      text-decoration: underline;
     }
   }
 }
 
-.page__content .page__meta,
 .page__meta {
-  @extend %mono-label;
-  font-size: 0.6em;
+  @extend %label;
+  color: $muted;
 }
 
 /* ==========================================================================
@@ -257,10 +286,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .entries-list {
   .list__item {
-    border-top: 1px solid $border-color;
+    border-top: 1px solid $line;
 
     &:last-child {
-      border-bottom: 1px solid $border-color;
+      border-bottom: 1px solid $line;
     }
   }
 
@@ -269,13 +298,12 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .archive__item-title {
+    @extend %heading;
     margin-top: 0;
-    font-family: $serif;
-    font-size: 1.2em;
-    font-weight: 500;
+    font-size: 1.25em;
 
     &::before {
-      display: none; // undo the section-heading rule
+      display: none; // undo the section-heading stripe
     }
 
     a {
@@ -283,27 +311,30 @@ h1, h2, h3, h4, h5, h6 {
       text-decoration: none;
 
       &:hover {
-        color: $teal-dark;
+        text-decoration: underline;
+        text-decoration-color: $ring-5;
       }
     }
   }
 
   .archive__item-excerpt {
+    @extend %label;
     margin-top: 0.3em;
-    font-size: 0.8em;
-    color: $grey;
+    font-size: 0.9em;
+    color: $muted;
   }
 }
 
 /* ==========================================================================
-   Buttons
+   Buttons (behave like filters/tabs: Medium)
    ========================================================================== */
 
 .btn {
-  @extend %label;
+  @extend %heading;
   border-radius: 0;
-  padding: 0.75em 1.5em;
-  font-size: 0.7em;
+  padding: 0.6em 1.4em;
+  font-size: 0.85em;
+  letter-spacing: 0.02em;
 }
 
 .btn--primary {
@@ -313,7 +344,7 @@ h1, h2, h3, h4, h5, h6 {
 
   &:hover {
     background: $ink;
-    color: #fff;
+    color: $paper;
   }
 }
 
@@ -356,24 +387,22 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .page__title {
-    font-family: $serif;
-    font-weight: 400;
+    @extend %heading;
     font-size: $type-size-2;
     text-shadow: none;
     color: $ink;
 
     @include breakpoint($large) {
-      font-size: 2.6em;
+      font-size: 2.8em;
     }
   }
 
   .page__lead {
     max-width: 26em;
-    font-family: $sans-serif;
     font-weight: 400;
     font-size: $type-size-4;
     text-shadow: none;
-    color: #4a4647;
+    color: $ink;
   }
 }
 
@@ -381,18 +410,16 @@ h1, h2, h3, h4, h5, h6 {
   .page__content > p {
     max-width: 46em;
     font-size: 1.05em;
-    line-height: 1.7;
   }
 
   .page__content > p:first-of-type {
     margin-top: 0.5em;
-    font-family: $serif;
     font-size: 1.3em;
-    line-height: 1.5;
+    line-height: 1.45;
   }
 }
 
-// Feature row: dark tiles with a teal top rule and outlined buttons
+// Feature row: ink tiles with the ring stripe on top
 .feature__wrapper {
   margin-top: 2.5em;
   border-bottom: none;
@@ -408,14 +435,24 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .archive__item {
+    position: relative;
     flex: 1;
     display: flex;
     background: $ink;
-    border-top: 4px solid $teal;
     transition: background 0.2s ease;
 
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: $ring-stripe;
+    }
+
     &:hover {
-      background: #000;
+      background: darken($ink, 4%);
     }
   }
 
@@ -423,15 +460,15 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 1.6em 1.5em 1.4em;
+    padding: 1.8em 1.5em 1.4em;
   }
 
   .archive__item-title {
+    @extend %heading;
     margin-top: 0;
-    margin-bottom: 0.4em;
-    font-family: $serif;
-    font-size: 1.5em;
-    color: #fff;
+    margin-bottom: 0.3em;
+    font-size: 1.6em;
+    color: $paper;
 
     &::before {
       display: none;
@@ -439,17 +476,18 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .archive__item-excerpt {
+    @extend %label;
     flex: 1;
-    color: $grey-light;
-    font-size: 0.85em;
+    color: $muted-on-ink;
+    font-size: 0.95em;
   }
 
   .btn--primary {
-    color: #fff;
-    border-color: #fff;
+    color: $paper;
+    border-color: $paper;
 
     &:hover {
-      background: #fff;
+      background: $paper;
       color: $ink;
     }
   }
@@ -460,8 +498,19 @@ h1, h2, h3, h4, h5, h6 {
    ========================================================================== */
 
 .page__footer {
+  position: relative;
   margin-top: 4em;
-  color: $grey-light;
+  color: $muted-on-ink;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: $ring-stripe;
+  }
 
   footer {
     padding-top: 2.5em;
@@ -469,37 +518,43 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   a {
-    color: #fff;
+    color: $paper;
     text-decoration: none;
 
     &:hover {
-      color: $teal-light;
+      text-decoration: underline;
     }
   }
 }
 
 .page__footer-follow .social-icons {
   @extend %label;
-  font-size: 0.85em;
+  font-size: 0.95em;
+
+  a, strong {
+    font-weight: 300;
+    text-transform: none;
+  }
 
   .fab, .fas {
-    color: $teal !important;
+    color: $paper !important;
   }
 }
 
 .page__footer-copyright {
-  @extend %mono-label;
-  font-size: 0.68em;
-  color: $grey-light;
+  @extend %label;
+  font-size: 0.8em;
+  color: $muted-on-ink;
 }
 
 // Map credit in the hero (theme's header caption)
 .page__hero-caption {
-  @extend %mono-label;
-  font-size: 0.55em;
-  background: rgba($ink, 0.75);
+  @extend %label;
+  font-size: 0.7em;
+  background: rgba($ink, 0.8);
+  color: $paper;
 
   a {
-    color: #fff;
+    color: $paper;
   }
 }

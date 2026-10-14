@@ -4,7 +4,7 @@ layout: splash
 permalink: /
 header:
   overlay_color: "#dfdfdd" # matches the land colour in kansenkaart-map.png
-  caption: "Map: [Kansenkaart.nl](https://kansenkaart.nl)"
+  caption: "Map: [KansenKaart](https://kansenkaart.nl)"
 excerpt: "Research on inequality and opportunity in the Netherlands, built on administrative and linked microdata."
 feature_row:
   - title: "Topics"
