@@ -1,8 +1,7 @@
 ---
 title: "Topics"
 permalink: /topics/
-layout: single
+excerpt: "Research themes of the Netherlands Opportunity Lab."
 ---
 
-Topics:
-- [Scientific research using preventative youth health care data]({{ site.baseurl }}/pyhc-data/)
+{% include collection-list.html collection="topics" %}

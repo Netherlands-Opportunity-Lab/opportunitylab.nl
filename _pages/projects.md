@@ -1,9 +1,7 @@
 ---
 title: "Projects"
 permalink: /projects/
-layout: single
+excerpt: "Research projects and partnerships the Netherlands Opportunity Lab contributes to."
 ---
 
-Projects:
-- [C-4PO]({{site.baseurl}}/c-4po)
-
+{% include collection-list.html collection="projects" %}

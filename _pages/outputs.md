@@ -1,13 +1,9 @@
 ---
 title: "Outputs"
 permalink: /outputs/
-layout: single
+excerpt: "Legal notes, documentation and other outputs of the Netherlands Opportunity Lab."
 ---
 
-Legal memos, documentation, etc.
+Legal notes, documentation and other outputs, most recent first.
 
----
-
-## Legal notes
-
-- [Legal Note on the Use of Preventive Youth Health Care Data for Research via Statistics Netherlands]({{ site.baseurl }}/legal-note-on-the-use-of-preventive-youthhealth-care-data-for-research-via-statistics-netherlands/)
+{% include collection-list.html collection="outputs" sort="last_updated" %}

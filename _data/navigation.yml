@@ -1,7 +1,4 @@
 main:
-  - title: "Home"
-    url: /
-
   - title: "Topics"
     url: /topics/
 
@@ -13,3 +10,6 @@ main:
 
   - title: "Media"
     url: /media/
+
+  - title: "About"
+    url: /about/

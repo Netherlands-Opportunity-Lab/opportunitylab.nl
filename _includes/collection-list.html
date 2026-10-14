@@ -1,0 +1,9 @@
+{% assign items = site[include.collection] %}
+{% if include.sort %}{% assign items = items | sort: include.sort | reverse %}{% endif %}
+{% if items.size > 0 %}
+<div class="entries-list">
+  {% for post in items %}{% include archive-single.html %}{% endfor %}
+</div>
+{% else %}
+<p><em>Nothing here yet.</em></p>
+{% endif %}

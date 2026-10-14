@@ -1,0 +1,44 @@
+---
+layout: single
+---
+
+{{ content }}
+
+<h2 id="details">Details</h2>
+
+<table>
+  <tbody>
+    {% if page.output_type %}<tr><th>Output type</th><td>{{ page.output_type }}</td></tr>{% endif %}
+    {% if page.topics %}
+    <tr><th>Topic</th><td>
+      {% for slug in page.topics %}{% assign t = site.topics | where: "slug", slug | first %}
+        {% if t %}<a href="{{ t.url | relative_url }}">{{ t.title }}</a>{% else %}{{ slug }}{% endif %}{% unless forloop.last %}<br>{% endunless %}
+      {% endfor %}
+    </td></tr>
+    {% endif %}
+    {% if page.projects %}
+    <tr><th>Project</th><td>
+      {% for slug in page.projects %}{% assign p = site.projects | where: "slug", slug | first %}
+        {% if p %}<a href="{{ p.url | relative_url }}">{{ p.title }}</a>{% else %}{{ slug }}{% endif %}{% unless forloop.last %}<br>{% endunless %}
+      {% endfor %}
+    </td></tr>
+    {% endif %}
+    {% if page.language %}<tr><th>Language</th><td>{{ page.language }}</td></tr>{% endif %}
+    {% if page.last_updated %}<tr><th>Last updated</th><td>{{ page.last_updated | date: "%B %Y" }}</td></tr>{% endif %}
+  </tbody>
+</table>
+
+{% assign links = page.links | where_exp: "l", "l.url" %}
+{% if links.size > 0 %}
+<h2 id="links">Links</h2>
+<ul>
+  {% for l in links %}<li><a href="{{ l.url }}">{{ l.label }}</a></li>{% endfor %}
+</ul>
+{% endif %}
+
+<h2 id="citation">Citation</h2>
+
+<blockquote>
+  Netherlands Opportunity Lab. <em>{{ page.title }}.</em>{% if page.last_updated %} Updated {{ page.last_updated | date: "%B %Y" }}.{% endif %}
+  <br><a href="{{ page.url | absolute_url }}">{{ page.url | absolute_url }}</a>
+</blockquote>
