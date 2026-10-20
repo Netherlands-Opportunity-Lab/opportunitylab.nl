@@ -8,8 +8,8 @@ search: false
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 
 /* ==========================================================================
-   Kansenlab house style v05 (2026-10-12)
-   - Logo wordmarks: Inter Semibold 600
+   Kansenlab house style (v05 decisions; tokens per kansenlab.css v12.1, 2026-10-20)
+   - Logo: official SVG with outlined Inter Semibold wordmark (no web font needed)
    - Everything else: Oswald, variant B
        Light 300   short labels and helper text
        Regular 400 running text, table cells
@@ -22,10 +22,10 @@ search: false
 
 $ink: #17242d;          // standard text
 $paper: #f7f5f0;        // background
-$paper-alt: #efece4;    // panels, slightly darker than the background
-$muted: #55636b;        // secondary text (5.7:1 on $paper)
+$panel: #ffffff;        // panels (surface)
+$muted: #59636a;        // secondary text
 $muted-on-ink: #a9b4ba; // secondary text on $ink (7.5:1)
-$line: #e2ddd2;         // borders and dividers
+$line: #dad7cf;         // borders and dividers
 
 // Kansenlab umbrella ring, in fixed order
 $ring-1: #d9833c;
@@ -39,7 +39,6 @@ $ring-stripe: linear-gradient(90deg,
   $ring-4 0 66.667%, $ring-5 0 83.333%, $ring-6 0);
 
 $oswald: "Oswald", "Arial Narrow", Arial, sans-serif;
-$inter: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
 
 $sans-serif: $oswald;
 $global-font-family: $oswald;
@@ -104,40 +103,27 @@ a {
   padding-bottom: 1.1em;
 }
 
-// Logo lockup (logo family v07): ring + one-line wordmark in Inter Semibold
+// Official Kansenlab logo (huisstijl v12.1): one SVG, wordmark already outlined
 .greedy-nav .wordmark {
   display: flex;
+  flex: none; // never squeeze the logo; menu items move into the overflow menu instead
   align-items: center;
-  gap: 10px;
   margin-right: 0.5em;
-  font-family: $inter;
+  line-height: 0;
 
   @include breakpoint($small) {
     margin-right: 2em;
   }
-  font-weight: 600;
-  line-height: 1;
 }
 
-.wordmark__mark {
-  flex: none;
-  width: 32px;
-  height: 32px;
+.wordmark__logo {
+  display: block;
+  width: auto;
+  max-width: none;
+  height: 34px; // phones: fits next to the search and menu buttons
 
   @include breakpoint($small) {
-    width: 40px;
-    height: 40px;
-  }
-}
-
-.wordmark__text {
-  font-size: 14px; // phones: fit next to the search and menu buttons
-  letter-spacing: -0.005em;
-  color: $ink;
-  white-space: nowrap;
-
-  @include breakpoint($small) {
-    font-size: 19px;
+    height: 44px;
   }
 }
 
@@ -250,7 +236,7 @@ a {
     margin-left: 0;
     padding: 1em 1.25em;
     border-left: 4px solid $ring-5;
-    background: $paper-alt;
+    background: $panel;
     font-style: normal;
     font-size: 0.95em;
   }

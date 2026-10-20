@@ -8,11 +8,10 @@
         {% unless logo_path == empty %}
           <a class="site-logo" href="{{ '/' | relative_url }}"><img src="{{ logo_path | relative_url }}" alt="{{ site.masthead_title | default: site.title }}"></a>
         {% endunless %}
-        {% comment %} Overrides the theme: Kansenlab logo (logo family v07) — six-colour ring (assets/images/logo-mark.svg) with a one-line wordmark in Inter Semibold. {% endcomment %}
+        {% comment %} Overrides the theme: official Kansenlab logo (huisstijl v12.1, assets/svg/logos/horizontal/en/kansenlab_en.svg; only the empty canvas edge trimmed). {% endcomment %}
         {% assign site_name = site.masthead_title | default: site.title | escape_once | strip %}
-        <a class="site-title wordmark" href="{{ '/' | relative_url }}" aria-label="{{ site_name }}">
-          <img class="wordmark__mark" src="{{ '/assets/images/logo-mark.svg' | relative_url }}" alt="" width="40" height="40">
-          <span class="wordmark__text">{{ site_name }}</span>
+        <a class="site-title wordmark" href="{{ '/' | relative_url }}">
+          <img class="wordmark__logo" src="{{ '/assets/images/kansenlab-logo-en.svg' | relative_url }}" alt="{{ site_name }}" width="798" height="120">
         </a>
         <ul class="visible-links">
           {%- for link in site.data.navigation.main -%}
