@@ -23,8 +23,13 @@ layout: single
       {% endfor %}
     </td></tr>
     {% endif %}
+    {% if page.publisher %}<tr><th>Publisher</th><td>{{ page.publisher }}</td></tr>{% endif %}
     {% if page.language %}<tr><th>Language</th><td>{{ page.language }}</td></tr>{% endif %}
-    {% if page.last_updated %}<tr><th>Last updated</th><td>{{ page.last_updated | date: "%B %Y" }}</td></tr>{% endif %}
+    {% comment %} external: true marks work by others that uses or cites the lab's research. {% endcomment %}
+    {% if page.last_updated %}
+      {% if page.external %}<tr><th>Published</th><td>{{ page.last_updated | date: "%-d %B %Y" }}</td></tr>
+      {% else %}<tr><th>Last updated</th><td>{{ page.last_updated | date: "%B %Y" }}</td></tr>{% endif %}
+    {% endif %}
   </tbody>
 </table>
 
@@ -36,9 +41,11 @@ layout: single
 </ul>
 {% endif %}
 
+{% unless page.external %}
 <h2 id="citation">Citation</h2>
 
 <blockquote>
   Netherlands Opportunity Lab. <em>{{ page.title }}.</em>{% if page.last_updated %} Updated {{ page.last_updated | date: "%B %Y" }}.{% endif %}
   <br><a href="{{ page.url | absolute_url }}">{{ page.url | absolute_url }}</a>
 </blockquote>
+{% endunless %}
